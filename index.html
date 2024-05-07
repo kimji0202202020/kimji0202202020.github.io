@@ -4,12 +4,83 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>김지상의 이면 </title>
+    <script>
+        let cnt = 1;
+        function a() {
+            let writer = f.writer.value;
+            let pwd = f.pwd.value;
+            let content = f.content.value;
+            let el = mkDiv(writer, pwd, content);
+            let list = document.getElementById("list");
+            list.appendChild(el);
+            f.writer.value = "";
+            f.pwd.value = "";
+            f.content.value = "";
+        }
+        function mkDiv(writer, pwd, content) {
+            let newDiv = document.createElement("div");//새 div태그 생성  <div id="d_1" pwd='111'>
+            newDiv.id = "d_" + cnt;//생성한 div에 id 지정. d_cnt
+            newDiv.pwd = pwd;
+            let html = ""; //생성된 div에 출력될 내용
+            html += "<span id='w_"+cnt+"'>" + writer + "</span><br/>";
+            html += "<span id='c_"+cnt+"'>" + content + "</span><br/>";
+            html += "<input type='button' value='수정' onclick=editForm(" + cnt
+                    + ")>"; //editForm(2)
+            html += "<input type='button' value='삭제' onclick=del(" + cnt + ")>";
+            newDiv.innerHTML = html;
+            cnt++;
+            return newDiv;
+        }
+        function editForm(cnt) {
+            let editDiv = document.getElementById("d_" + cnt); //수정할 글의 div
+            let editForm = document.getElementById("editf");
+            editDiv.appendChild(editForm);
+            let writer = document.getElementById("w_" + cnt).innerHTML;
+            let content = document.getElementById("c_" + cnt).innerHTML;
+            document.getElementById("editwriter").value = writer;
+            document.getElementById("editcontent").value = content;
+            document.getElementById("editbtn").cnt = cnt;//버튼에 cnt속성을 추가해서, 수정 글번호를 저장
+            editForm.style.display = '';
+        }
+        function cancel() {
+            let editForm = document.getElementById("editf");
+            editForm.style.display = 'none';
+            document.getElementsByTagName("body")[0].appendChild(editForm);
+    
+        }
+        function edit() {
+            let cnt = document.getElementById("editbtn").cnt;
+            let editDiv = document.getElementById("d_" + cnt);
+            let pwd2 = document.getElementById("editpwd").value;//수정폼에 입력한 글 비밀번호
+            if (editDiv.pwd != pwd2) {
+                alert("글 비밀번호 불일치. 수정불가");
+            } else {
+                let newWriter = document.getElementById("editwriter").value;
+                let newContent = document.getElementById("editcontent").value;
+                document.getElementById("w_" + cnt).innerHTML = newWriter;
+                document.getElementById("c_" + cnt).innerHTML = newContent;
+            }
+            document.getElementById("editwriter").value = "";
+            document.getElementById("editcontent").value = "";
+            document.getElementById("editpwd").value = "";
+            cancel();
+        }
+        function del(cnt) {
+            let pwd = prompt("글 비밀번호");
+            let delDiv = document.getElementById("d_" + cnt);
+            if (pwd == delDiv.pwd) {
+                document.getElementById("list").removeChild(delDiv);
+            }else{
+                alert("글 비밀번호 불일치. 삭제취소");
+            }
+        }
+    </script>
 </head>
 
 <body background="back.gif" topmargin="0" data-new-gr-c-s-check-loaded="14.1126.0" data-gr-ext-installed="" onload="window_onLoad();">
 
     <center>
-        <font color="#996600" size="7" face="바탕"><i>김지상의 이면</i></font>
+        <font color="#996600" size="7" face="돋움" ><i>나의 이면</i></font>
         <p>
             <td>
                 <!-- SiteSearch Google -->
@@ -22,7 +93,7 @@
         </p>
         <center>
 
-            <img src="mrkim2.jpg" width="100" height="120">
+            <img src="mrkim3.jpeg" width="100" height="120">
         </center>
 
         <p><a href="https://www.youtube.com/@Kmjs_2"><img width="150" height="35" src="film.jpg"></a>
@@ -33,14 +104,6 @@
         <table width="820">
             <tbody>
                 <tr>
-                    <td width="350" valign="top">
-                        <font size="6" face="arial black">
-                            <b><i>음 </i></b><br><br>
-                            <b><i>영</i></b><br><br>
-                            <b><i>문</i></b>
-                        </font>
-                    </td>
-
                     <td>
                         <table width="860">
                             <tbody>
@@ -81,7 +144,7 @@
                         </table>
 
 
-                        <hr><a>E-mail/rlawlkd22@gmail.com/ influenced by <a href="https://www.scaruffi.com"></href>scaruffi</a> / thank you!!</a>
+                        <hr><a>rlawlkd22@gmail.com/ influenced by <a href="https://www.scaruffi.com"></href>scaruffi</a> / thank you!!</a>
                         </font>
 
                         </font>
@@ -89,7 +152,49 @@
     <font size="-1">
 
 
-
+     
+        <form name="f">
+            <table id="t1">
+                <tr>
+                    <th>name</th>
+                    <td><input type="text" name="writer" id="writer"></td>
+                </tr>
+                <tr>
+                    <th>password</th>
+                    <td><input type="password" name="pwd" id="pwd"></td>
+                </tr>
+                <tr>
+                    <th>content</th>
+                    <td><input type="text" name="content" id="content"></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><input type="button" value="Cool!" onclick="a()"></td>
+                </tr>
+            </table>
+        </form>
+        <div id="list"></div>
+        <!-- 수정폼 -->
+        <table id="editf" style="display: none;">
+            <tr>
+                <th>작성자</th>
+                <td><input type="text" name="editwriter" id="editwriter"></td>
+            </tr>
+            <tr>
+                <th>글 비밀번호</th>
+                <td><input type="password" name="editpwd" id="editpwd"></td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td><input type="text" name="editcontent" id="editcontent"></td>
+            </tr>
+            <tr>
+                <th>수정완료</th>
+                <td><input type="button" value="수정완료" id="editbtn"
+                    onclick="edit()"> <input type="button" value="취소"
+                    onclick="cancel()"></td>
+            </tr>
+        </table>
     </font>
 </body>
 <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
