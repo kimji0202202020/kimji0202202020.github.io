@@ -1,0 +1,286 @@
+/* ==========================================================================
+   김지상의 이면 — extremely minimal, text-first.
+   90s mood survives only in typography (serif italic headers, monospace
+   metadata, hairline rules) — not in decoration. Ref: jonasmekas.com/diary,
+   cavehzahedi.com/media.
+   ========================================================================== */
+
+:root {
+  --color-bg: #faf6ec;
+  --color-ink: #22201c;
+  --color-ink-soft: #6f6a5f;
+  --color-line: #d8d2c0;
+  --color-link: #7a4712;
+  --color-link-visited: #5a3a6e;
+  --color-accent: #7a4712;
+
+  --font-serif: Georgia, "Nanum Myeongjo", "Noto Serif KR", serif;
+  --font-mono: "Courier New", ui-monospace, SFMono-Regular, monospace;
+
+  --max-width: 620px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:visited {
+  color: var(--color-link-visited);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-accent);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-line);
+  margin: 2rem 0;
+}
+
+/* ---------- layout shell ---------- */
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 5rem;
+}
+
+.site-header {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3rem 1.25rem 1.5rem;
+  text-align: center;
+}
+
+.site-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.9rem;
+  margin: 0 0 0.35rem;
+}
+
+.site-title a {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.site-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+  margin: 0 0 1.25rem;
+}
+
+.site-portrait {
+  width: 56px;
+  height: 68px;
+  object-fit: cover;
+  border: 1px solid var(--color-line);
+  margin-bottom: 1rem;
+}
+
+/* nav — plain inline text, no chrome */
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.site-nav li:not(:last-child)::after {
+  content: "/";
+  margin-left: 0.6rem;
+  color: var(--color-line);
+}
+
+.site-nav a {
+  color: var(--color-ink-soft);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--color-ink);
+  font-weight: bold;
+}
+
+.page > hr:first-child {
+  margin-top: 0;
+}
+
+/* ---------- content ---------- */
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.intro {
+  color: var(--color-ink-soft);
+  margin-bottom: 2.5rem;
+}
+
+.entry-title {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 0.25rem;
+}
+
+.entry-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+  margin-bottom: 1.75rem;
+}
+
+.entry-meta .tag {
+  color: var(--color-ink-soft);
+}
+
+.entry-meta .tag::before {
+  content: "#";
+}
+
+/* rating — bracket notation, no badge */
+
+.rating {
+  font-family: var(--font-mono);
+  color: var(--color-accent);
+}
+
+.rating::before {
+  content: "[";
+}
+
+.rating::after {
+  content: "]";
+}
+
+/* list of entries (journal / films / music index) */
+
+.entry-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.entry-list li {
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.85rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.75rem;
+}
+
+.entry-list li:first-child {
+  border-top: 1px solid var(--color-line);
+}
+
+.entry-list .entry-list-date {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-ink-soft);
+  min-width: 5.5rem;
+}
+
+.entry-list a {
+  text-decoration: none;
+}
+
+.entry-list a:hover,
+.entry-list a:focus-visible {
+  text-decoration: underline;
+}
+
+.entry-list .entry-list-sub {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+}
+
+.entry-list .rating {
+  margin-left: auto;
+  font-size: 0.85rem;
+}
+
+/* footer */
+
+.site-footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+  padding: 2.5rem 1.25rem 3rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.site-footer a {
+  color: var(--color-ink-soft);
+}
+
+/* utility */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 420px) {
+  .entry-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+  }
+
+  .entry-list .rating {
+    margin-left: 0;
+  }
+}
