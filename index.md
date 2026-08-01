@@ -4,7 +4,7 @@ layout: default
 permalink: /
 ---
 
-<p class="panel">
+<p class="intro">
   요즘 생각하는 것들을 여기에 적어둔다. 그리고 요즘 보는 영화, 듣는 음악 취향도.
   포트폴리오는 아니고, 그냥 내가 통제하는 나만의 공간 — 나만의 SNS 같은 것.
 </p>

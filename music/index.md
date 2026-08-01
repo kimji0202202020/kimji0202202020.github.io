@@ -15,9 +15,9 @@ permalink: /music/
   {% assign entries = site.music | sort: "order" %}
   {% for entry in entries %}
   <li>
-    <span class="rating" style="min-width:1.8rem;height:1.8rem;font-size:0.8rem;">{{ entry.rating }}</span>
     <a href="{{ entry.url | relative_url }}">{{ entry.title }}</a>
     <span class="entry-list-sub">{{ entry.creator }} · {{ entry.genre }}</span>
+    <span class="rating">{{ entry.rating }}</span>
   </li>
   {% endfor %}
 </ul>
