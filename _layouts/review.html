@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<article class="panel">
+  <p class="entry-meta">
+    <span class="rating">{{ page.rating }}</span>
+    <span class="tag">{{ page.genre }}</span>
+  </p>
+  <h1 class="entry-title">{{ page.title }}</h1>
+  <p class="entry-meta">{{ page.creator_label | default: "by" }} {{ page.creator }}{% if page.date %} · {{ page.date | date: "%Y-%m-%d" }}{% endif %}</p>
+  {{ content }}
+</article>
+
+<p><a href="{{ '/' | append: page.section | append: '/' | relative_url }}">&larr; {{ page.section | capitalize }} 목록으로</a></p>

@@ -1,0 +1,62 @@
+title: "김지상의 이면"
+tagline: "생각, 영화, 음악을 아카이빙하는 나만의 공간"
+description: "요즘 생각하는 것들과 좋아하는 영화·음악·책에 대한 개인적인 기록. 김지상의 블로그 겸 나만의 SNS."
+author: "김지상"
+email: rlawltkd22@gmail.com
+url: "https://kimji0202202020.github.io"
+lang: ko
+
+markdown: kramdown
+permalink: /:collection/:slug/
+
+collections:
+  journal:
+    output: true
+    permalink: /journal/:slug/
+  films:
+    output: true
+    permalink: /films/:slug/
+  music:
+    output: true
+    permalink: /music/:slug/
+
+defaults:
+  - scope:
+      path: ""
+      type: journal
+    values:
+      layout: journal
+  - scope:
+      path: ""
+      type: films
+    values:
+      layout: review
+      section: films
+  - scope:
+      path: ""
+      type: music
+    values:
+      layout: review
+      section: music
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+feed:
+  collections:
+    journal:
+      output: true
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CLAUDE.md
+  - vendor
+  - node_modules

@@ -1,0 +1,14 @@
+---
+layout: default
+section: journal
+---
+<article class="panel">
+  <h1 class="entry-title">{{ page.title }}</h1>
+  <p class="entry-meta">
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+    {% if page.mood %}· {{ page.mood }}{% endif %}
+  </p>
+  {{ content }}
+</article>
+
+<p><a href="{{ '/journal/' | relative_url }}">&larr; Journal 목록으로</a></p>

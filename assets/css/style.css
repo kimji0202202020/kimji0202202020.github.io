@@ -1,0 +1,321 @@
+/* ==========================================================================
+   김지상의 이면 — retro skin, modern structure.
+   90s personal-homepage mood (thick borders, warm inks, hand-placed feel)
+   built on valid, responsive, accessible CSS. No deprecated markup tricks.
+   ========================================================================== */
+
+:root {
+  --color-bg: #f5ecd8;
+  --color-bg-paper: #fffaf0;
+  --color-ink: #2b2118;
+  --color-ink-soft: #5a4a38;
+  --color-primary: #a6621b;
+  --color-primary-dark: #7a4712;
+  --color-accent: #0f6e6e;
+  --color-highlight: #b1272d;
+  --color-border: #2b2118;
+  --color-link: #7a4712;
+  --color-link-visited: #5a3a6e;
+
+  --font-display: Georgia, "Nanum Myeongjo", "Noto Serif KR", serif;
+  --font-body: "Apple SD Gothic Neo", "Malgun Gothic", -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  --font-mono: "Courier New", ui-monospace, SFMono-Regular, monospace;
+
+  --border-thick: 3px solid var(--color-border);
+  --border-thin: 1px solid var(--color-ink-soft);
+  --max-width: 720px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(43, 33, 24, 0.06) 1px,
+      transparent 0
+    );
+  background-size: 18px 18px;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+a:visited {
+  color: var(--color-link-visited);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-highlight);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  border: none;
+  border-top: var(--border-thick);
+  margin: 1.75rem 0;
+}
+
+/* ---------- layout shell ---------- */
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+}
+
+.site-header {
+  text-align: center;
+  padding: 2rem 1rem 1.25rem;
+  border-bottom: var(--border-thick);
+  background-color: var(--color-bg-paper);
+}
+
+.site-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(2rem, 7vw, 2.75rem);
+  color: var(--color-primary);
+  margin: 0 0 0.25rem;
+  letter-spacing: 0.02em;
+}
+
+.site-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+  margin: 0 0 1rem;
+}
+
+.site-portrait {
+  width: 96px;
+  height: 116px;
+  object-fit: cover;
+  border: var(--border-thick);
+  box-shadow: 5px 5px 0 var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+/* nav */
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border: var(--border-thin);
+  background: var(--color-bg-paper);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.site-nav a[aria-current="page"] {
+  background: var(--color-primary);
+  color: var(--color-bg-paper);
+  border-color: var(--color-primary);
+}
+
+/* ---------- content blocks ---------- */
+
+.panel {
+  background: var(--color-bg-paper);
+  border: var(--border-thick);
+  box-shadow: 6px 6px 0 rgba(43, 33, 24, 0.15);
+  padding: 1.5rem;
+  margin: 1.75rem 0;
+}
+
+.panel > *:first-child {
+  margin-top: 0;
+}
+
+.panel > *:last-child {
+  margin-bottom: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  color: var(--color-primary-dark);
+  line-height: 1.3;
+}
+
+.entry-title {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  margin-bottom: 0.25rem;
+}
+
+.entry-meta {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+  margin-bottom: 1.25rem;
+}
+
+.entry-meta .tag {
+  display: inline-block;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 0.05rem 0.4rem;
+  margin-right: 0.35rem;
+}
+
+/* rating badge, descendant of the old red/yellow score cell */
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0 0.4rem;
+  background: var(--color-highlight);
+  color: #fdf3d8;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  border: 2px solid var(--color-border);
+  transform: rotate(-2deg);
+}
+
+/* list of entries (journal / films / music index) */
+
+.entry-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.entry-list li {
+  border: var(--border-thin);
+  background: var(--color-bg-paper);
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.75rem;
+}
+
+.entry-list .entry-list-date {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+  min-width: 6.5rem;
+}
+
+.entry-list a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.entry-list a:hover,
+.entry-list a:focus-visible {
+  text-decoration: underline;
+}
+
+.entry-list .entry-list-sub {
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+}
+
+/* review table kept as an homage — now a real, responsive table */
+
+.review-table-wrap {
+  overflow-x: auto;
+}
+
+table.reviews {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+table.reviews caption {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+  margin-bottom: 0.5rem;
+}
+
+table.reviews th,
+table.reviews td {
+  border: var(--border-thin);
+  padding: 0.5rem 0.6rem;
+  text-align: left;
+}
+
+table.reviews thead th {
+  background: var(--color-ink);
+  color: var(--color-bg-paper);
+  font-family: var(--font-mono);
+  font-weight: normal;
+}
+
+/* footer */
+
+.site-footer {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+  padding: 2rem 1rem;
+  border-top: var(--border-thick);
+  margin-top: 3rem;
+}
+
+.site-footer a {
+  color: var(--color-ink-soft);
+}
+
+/* utility */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .entry-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
